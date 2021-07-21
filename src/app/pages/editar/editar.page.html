@@ -1,13 +1,7 @@
 <ion-header>
-    <ion-header [translucent]="true">
-        <ion-toolbar>
-            <ion-buttons slot="start">
-                <ion-menu-button>
-                </ion-menu-button>
-            </ion-buttons>
-            <ion-title>Formulario de Creacion</ion-title>
-        </ion-toolbar>
-    </ion-header>
+    <ion-toolbar>
+        <ion-title>Formulario de Creacion</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -31,8 +25,14 @@
         <ion-input [(ngModel)]="vehiculo.precio"></ion-input>
     </ion-item>
 
+    <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+        <ion-fab-button (click)="crear()">
+            <ion-icon name="arrow-back-circle"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button (click)="guardar()">
+        <ion-fab-button (click)="guardarTotal()">
             <ion-icon name="checkmark-outline"></ion-icon>
         </ion-fab-button>
     </ion-fab>

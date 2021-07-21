@@ -1,9 +1,34 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>listado</ion-title>
-  </ion-toolbar>
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button>
+            </ion-menu-button>
+        </ion-buttons>
+        <ion-title>Listado</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-list>
+        <ion-list-header>
+            Vehiculos Recientes
+        </ion-list-header>
 
+        <div *ngFor="let vehiculo of vehiculos | async">
+            <ion-item (click)="editar(vehiculo)">
+                <ion-label>
+                    <h3>{{ vehiculo.marca }}</h3>
+                    <h3>{{ vehiculo.modelo }}</h3>
+                    <p>{{ vehiculo.anio }}</p>
+                    <h2>{{ vehiculo.precio }}</h2>
+                </ion-label>
+            </ion-item>
+        </div>
+    </ion-list>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="navRegistrar()">
+            <ion-icon name="arrow-forward-circle"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
 </ion-content>

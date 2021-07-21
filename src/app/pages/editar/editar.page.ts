@@ -1,39 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { Vehiculo } from '../../domain/vehiculo';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ArriendoService } from '../../services/arriendo.service';
+import { Vehiculo } from '../../domain/vehiculo';
 
 @Component({
-  selector: 'app-registro',
-  templateUrl: './registro.page.html',
-  styleUrls: ['./registro.page.scss'],
+  selector: 'app-editar',
+  templateUrl: './editar.page.html',
+  styleUrls: ['./editar.page.scss'],
 })
-export class RegistroPage implements OnInit {
-
-  marca:string;
-  modelo:string;
-  anio:any
-  precio:any
+export class EditarPage implements OnInit {
 
   vehiculo: Vehiculo = new Vehiculo;
 
   constructor(private router: Router, private route: ActivatedRoute, private arriendoService: ArriendoService) { 
     route.queryParams.subscribe(params =>{
       console.log(params)
-      this.marca = params.marca;
-      this.modelo = params.modelo;
-      this.anio = params.anio;
-      this.precio = params.precio;
-      
+      this.vehiculo = params.vehiculo;
+      if(this.router.getCurrentNavigation().extras.queryParams){
+        this.vehiculo = this.router.getCurrentNavigation().extras.queryParams.vehiculo
+      }
     })
   }
 
   ngOnInit() {
   }
 
-  guardar(){
+  guardarTotal(){
     console.log(this.vehiculo);
     this.arriendoService.save(this.vehiculo)
+    this.router.navigate(['vehiculos/listado'])
+  }
+
+  crear(){
+    this.router.navigate(['vehiculos/listado'])
   }
 
 }
